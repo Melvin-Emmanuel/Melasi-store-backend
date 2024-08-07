@@ -16,7 +16,7 @@ exports.LogoutUser = exports.VerifyUser = exports.LoginUser = exports.CreateUser
 const UserModel_1 = __importDefault(require("../Model/UserModel"));
 const ProfileModel_1 = __importDefault(require("../Model/ProfileModel"));
 const nodemailer_1 = __importDefault(require("nodemailer"));
-const bcrypt_1 = __importDefault(require("bcrypt"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const transporter = nodemailer_1.default.createTransport({
     host: "smtp.gmail.com",
     service: "gmail",
@@ -47,8 +47,8 @@ const CreateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 message: "password must not be less than eight characters"
             });
         }
-        const salt = yield bcrypt_1.default.genSalt(10);
-        const HashedPassword = yield bcrypt_1.default.hash(Password, salt);
+        const salt = yield bcryptjs_1.default.genSalt(10);
+        const HashedPassword = yield bcryptjs_1.default.hash(Password, salt);
         const UserData = yield UserModel_1.default.create({
             FirstName: FirstName,
             LastName: LastName,
@@ -97,7 +97,7 @@ const LoginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { Email, Password } = req.body;
         const checkEmail = yield UserModel_1.default.findOne({ Email: Email });
         if (checkEmail) {
-            const CheckPassword = yield bcrypt_1.default.compare(Password, checkEmail.Password);
+            const CheckPassword = yield bcryptjs_1.default.compare(Password, checkEmail.Password);
             if (CheckPassword) {
                 if (checkEmail.Verify) {
                     //  const token = jwt.sign(
