@@ -74,6 +74,7 @@ export const CreateProduct = async(req:any, res: Response): Promise<Response> =>
             message: "Product created successfully",
             result:createProduct
         })
+        
     } catch (error:any) {
         return res.status(401).json({
             message:error.message

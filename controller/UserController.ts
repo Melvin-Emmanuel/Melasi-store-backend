@@ -3,8 +3,9 @@ import ProfileModel from "../Model/ProfileModel";
 import jwt from "jsonwebtoken"
 import nodemailer from "nodemailer"
 import { Request, Response } from "express"
-import bcrypt from "bcrypt"
+// import bcrypt from "bcrypt"
 import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 
 
 

@@ -14,3 +14,4 @@ declare module "*nodemailer";
 declare module "*ejs";
 declare module "*googleapis";
 declare module "*slugify"
+declare module "*bcryptjs";
