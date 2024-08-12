@@ -2,7 +2,7 @@ declare module "*mongoose";
 declare module "*express";
 declare module "*process";
 declare module "*path";
-declare module "*bcrypt";
+
 declare module "*cors";
 declare module "*morgan";
 declare module "*jsonwebtoken";
@@ -15,3 +15,4 @@ declare module "*ejs";
 declare module "*googleapis";
 declare module "*slugify"
 declare module "*bcryptjs";
+declare module  "*bcrypt"
