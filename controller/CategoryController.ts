@@ -131,7 +131,9 @@ export const GetAllCategory = async (req: any, res: Response): Promise<Response>
 }
 export const getSingleCategory = async (req: Request, res: Response): Promise<Response> => {
     const { catID } = req.params
+
     
+  
     const data = CategoryModel.findOne({ _id: catID }).populate({
         path: "User",
         select: "FullName"

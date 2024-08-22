@@ -66,7 +66,7 @@ export const CreateUser = async (req: Request, res: Response) => {
           from: '"Melasi Stores 🤳📱📺" <noreply@MelasiStores.com>', // sender address
           to: Email, // list of receivers
           subject: "Melasi Stores", // Subject line
-          html: `<b>PLEASE CLICK ON THE LINK <a href="http://localhost:5032/api/v1/verify-account/${UserData._id}">link</a>TO VERIFY YOUR ACCOUNT</b>`, // html body
+          html: `<b>PLEASE CLICK ON THE LINK <a href="faint-lily-melasicodelab-31cb4284.koyeb.app/api/v1/verify-account/${UserData._id}">link</a>TO VERIFY YOUR ACCOUNT</b>`, // html body
         };
         await transporter.sendMail(mailOption, (error: any, info: any) => {
           if (error) {
@@ -128,7 +128,7 @@ export const LoginUser = async (req:Request, res:Response):Promise<Response> => 
                    from: '"Melasi Stores 📱🤳" "<Noreply@melasistores.com>"', // sender address
                    to: Email, // list of receivers
                    subject: "Melasi stores", // Subject line
-                   html: `<b>PLEASE CLICK ON THE LINK <a href="http://localhost:5032/api/v1/Verify-Account/${checkEmail._id}"/>link</a>TO VERIFY YOUR ACCOUNT</b>`, // html body
+                   html: `<b>PLEASE CLICK ON THE LINK <a href="faint-lily-melasicodelab-31cb4284.koyeb.app/api/v1/Verify-Account/${checkEmail._id}"/>Link</a>TO VERIFY YOUR ACCOUNT</b>`, // html body
                  };
                  await transporter.sendMail(
                    mailOption,
