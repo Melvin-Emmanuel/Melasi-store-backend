@@ -1,5 +1,5 @@
 import express from "express";
-import { verifyToken } from "../Middleware/verify";
+import { verifyToken } from "../Middleware/verify"
 import { CreateCategory, updateCategory, DeletCategory} from "../controller/CategoryController";
 
 const router = express.Router();

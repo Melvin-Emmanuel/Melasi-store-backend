@@ -68,7 +68,7 @@ const CreateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             from: '"Melasi Stores 🤳📱📺" <noreply@MelasiStores.com>',
             to: Email,
             subject: "Melasi Stores",
-            html: `<b>PLEASE CLICK ON THE LINK <a href="http://localhost:5032/api/v1/verify-account/${UserData._id}">link</a>TO VERIFY YOUR ACCOUNT</b>`, // html body
+            html: `<b>PLEASE CLICK ON THE LINK <a href="faint-lily-melasicodelab-31cb4284.koyeb.app/api/v1/verify-account/${UserData._id}">link</a>TO VERIFY YOUR ACCOUNT</b>`, // html body
         };
         yield transporter.sendMail(mailOption, (error, info) => {
             if (error) {
@@ -125,7 +125,7 @@ const LoginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                         from: '"Melasi Stores 📱🤳" "<Noreply@melasistores.com>"',
                         to: Email,
                         subject: "Melasi stores",
-                        html: `<b>PLEASE CLICK ON THE LINK <a href="http://localhost:5032/api/v1/Verify-Account/${checkEmail._id}"/>link</a>TO VERIFY YOUR ACCOUNT</b>`, // html body
+                        html: `<b>PLEASE CLICK ON THE LINK <a href="faint-lily-melasicodelab-31cb4284.koyeb.app/api/v1/Verify-Account/${checkEmail._id}"/>Link</a>TO VERIFY YOUR ACCOUNT</b>`, // html body
                     };
                     yield transporter.sendMail(mailOption, (error, info) => {
                         if (error) {
