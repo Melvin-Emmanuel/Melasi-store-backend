@@ -7,6 +7,7 @@ import LogoutUser from "./Router/UserRouter"
 import CreateCategory from "./Router/CategoryRouter"
 import updateCategory from "./Router/CategoryRouter";
 import DeleteCategory from "./Router/CategoryRouter"
+import GetAllCategory from "./Router/CategoryRouter";
 
 export const MainApp = (app: Application) => {
   app.use(express.json());
@@ -22,5 +23,6 @@ export const MainApp = (app: Application) => {
   app.use("api/v1", LogoutUser)
   app.use("/api/v1", CreateCategory)
   app.use("api/v1", updateCategory)
-  app.use("api/v1",DeleteCategory)
+  app.use("api/v1", DeleteCategory)
+  app.use("api/v1",GetAllCategory)
 };
