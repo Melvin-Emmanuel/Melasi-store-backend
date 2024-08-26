@@ -95,11 +95,11 @@ export const CreateUser = async (req: Request, res: Response) => {
 
 export const LoginUser = async (req:Request, res:Response):Promise<Response> => {
   try {
-      const { Email, Password } = req.body;
-      const checkEmail = await UserModel.findOne({ Email: Email }) 
+      const { email, password } = req.body;
+      const checkEmail = await UserModel.findOne({ Email: email }) 
 
       if (checkEmail) {
-          const CheckPassword = await bcrypt.compare(Password, checkEmail.Password)
+          const CheckPassword = await bcrypt.compare(password, checkEmail.Password)
           
           if (CheckPassword) {
                if (checkEmail.Verify) {
@@ -126,7 +126,7 @@ export const LoginUser = async (req:Request, res:Response):Promise<Response> => 
                } else {
                  let mailOption = {
                    from: '"Melasi Stores 📱🤳" "<Noreply@melasistores.com>"', // sender address
-                   to: Email, // list of receivers
+                   to: email, // list of receivers
                    subject: "Melasi stores", // Subject line
                    html: `<b>PLEASE CLICK ON THE LINK <a href="faint-lily-melasicodelab-31cb4284.koyeb.app/api/v1/Verify-Account/${checkEmail._id}"/>Link</a>TO VERIFY YOUR ACCOUNT</b>`, // html body
                  };
@@ -159,7 +159,7 @@ export const LoginUser = async (req:Request, res:Response):Promise<Response> => 
       }
   } catch (error: any) {
       return res.status(404).json({
-          message:"unable to login"
+          message:`unable to login because ${error}`
       })
     
   }
