@@ -3,7 +3,7 @@ import { verifyToken } from "../Middleware/verify"
 import { CreateCategory, updateCategory, DeletCategory, GetAllCategory} from "../controller/CategoryController";
 
 const router = express.Router();
-router.route("/create-Category").post(verifyToken,CreateCategory);
+router.route("/create-Category").post(CreateCategory);
 // router.route("/get-All-user").post(CreateCategory);
 router.route("Update-Category").post(verifyToken, updateCategory)
 router.route("Delete-Category").post(verifyToken, DeletCategory)

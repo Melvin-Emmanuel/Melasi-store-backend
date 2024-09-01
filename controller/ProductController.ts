@@ -106,11 +106,20 @@ const editProduct = async (req: any, res: Response): Promise<Response> => {
 }
 
 }
-// export const GetAllProducts = async (req:any,res:Response):Promise<Response> => {
-//     try {
-//         const UserID = req.User._id
-//         const getCategoriesForLoggedInuser=
-//     } catch (error) {
+export const GetAllProducts = async (req:any,res:Response):Promise<Response> => {
+    try {
+        const UserID = req.User._id
+        const getCategoriesForLoggedInuser = CategoryModel.find({ User: UserID })
+
+        return (res.status(200).json({
+            message: "gotten prosucts",
+            result:getCategoriesForLoggedInuser
+        }))
         
-//     }
-// }
+    } catch (error) {
+        return (res.status(400).json({
+            message:"an error occured in getting products"
+        }))
+        
+    }
+}
