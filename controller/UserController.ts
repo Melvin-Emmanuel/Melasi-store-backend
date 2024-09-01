@@ -114,7 +114,7 @@ export const LoginUser = async (
           return res.status(201).json({
             success: 1,
             message: "login successful",
-            // data: { info, token },
+            data:token ,
           });
         } else {
           let mailOption = {
