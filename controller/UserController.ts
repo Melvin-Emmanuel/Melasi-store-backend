@@ -103,25 +103,25 @@ export const LoginUser = async (req:Request, res:Response):Promise<Response> => 
           
           if (CheckPassword) {
                if (checkEmail.Verify) {
-                //  const token = jwt.sign(
-                //    {
-                //      _id: checkEmail?._id,
-                //      userName: checkEmail.FirstName + " " + checkEmail.LastName,
-                //      role: checkEmail.role,
-                //    },
-                //    "variationofeventsisatrandom",
-                //    { expiresIn: "40m" }
-                //  );
-                // //  console.log("Melasi", token);
-                //  const { password, ...info } = checkEmail._doc;
-                //  res.cookie("sessionId", token);
-                //    console.log(req.headers["cookie"]);
+                 const token = jwt.sign(
+                   {
+                     _id: checkEmail?._id,
+                     userName: checkEmail.FirstName + " " + checkEmail.LastName,
+                     role: checkEmail.role,
+                   },
+                   "variationofeventsisatrandom",
+                   { expiresIn: "40m" }
+                 );
+                //  console.log("Melasi", token);
+                 const { password, ...info } = checkEmail._doc
+                 res.cookie("sessionId", token);
+                   console.log(req.headers["cookie"]);
                    
-                //    console.log(Data)
+                 
                  return res.status(201).json({
                    success: 1,
                    message: "login successful",
-                  //  data: { info, token },
+                   data: { info, token },
                  });
                } else {
                  let mailOption = {
