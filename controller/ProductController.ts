@@ -14,6 +14,7 @@ export const CreateProduct = async (
   try {
     // const { catID } = req.params
     const { Name, Image, Desc, Quantity, Price, Category } = req.body;
+    console.log("hgghggfty")
     if (!Name || !Desc || !Quantity || !Price) {
       return res.status(401).json({
         message: "fields cannot be empty",
