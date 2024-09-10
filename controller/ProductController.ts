@@ -27,38 +27,39 @@ export const CreateProduct = async (
     //         message:"This Category does not exist. you must crate category first"
     //     })
     // }
-    console.log("hvjhvjh", req.file.path);
-    const ImageURl = await cloudinary.uploader.upload(req.file.path);
+    // console.log("hvjhvjh", req.file.path);
+    // const ImageURl = await cloudinary.uploader.upload(req.file.path);
+     const checkproducts = await ProductModel.findOne({ Name: Name });
+
+     if (checkproducts) {
+       return res.status(401).json({
+         message:
+           "this Product already exists, update product or input different product Name",
+       });
+     }
 
     const createProduct = await ProductModel.create({
       Name,
-      Image: ImageURl.secure_url,
+      Image,
       Desc,
       Quantity,
       Price,
       Category,
     });
-    const checkproducts = await ProductModel.findOne({ Name: Name });
-
-    if (checkproducts) {
-      return res.status(401).json({
-        message:
-          "this Product already exists, update product or input different product Name",
-      });
-    }
+   
     const getCatByName = await CategoryModel.findOne({
       Name: createProduct.Category,
     });
     console.log("dhshsjs", getCatByName);
     const userId = getCatByName?.User;
     console.log("userId", userId);
-    const LoggedInUser = req.User._id;
-    if (userId !== LoggedInUser) {
-      return res.status(404).json({
-        message:
-          "currently logged in user not allowed to create products for this category",
-      });
-    }
+    const LoggedInUser = req.user._id;
+    // if (userId !== LoggedInUser) {
+    //   return res.status(404).json({
+    //     message:
+    //       "currently logged in user not allowed to create products for this category",
+    //   });
+    // }
     const checkUser = await UserModel.findOne({ _id: getCatByName?.User });
     console.log(checkUser);
 
