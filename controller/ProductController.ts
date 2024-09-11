@@ -103,21 +103,45 @@ const editProduct = async (req: any, res: Response): Promise<Response> => {
     });
   }
 };
+import { Response } from "express";
+import CategoryModel from "path-to-your-category-model"; // Adjust the import path accordingly
+
 export const GetAllProducts = async (
   req: any,
   res: Response
 ): Promise<Response> => {
   try {
     const UserID = req.User._id;
-    const getCategoriesForLoggedInuser = CategoryModel.find({ User: UserID });
+
+    // Fetch all categories for the logged-in user and include their products
+    const categories = await CategoryModel.find({ User: UserID }).lean();
+
+    if (!categories.length) {
+      return res.status(200).json({
+        message: "No categories found for the user.",
+        result: [],
+      });
+    }
+
+    // Initialize an array to hold all products
+    const allProducts: any[] = [];
+
+    // Loop through each category and extract products
+    categories.forEach((category) => {
+      if (Array.isArray(category.Products)) {
+        allProducts.push(...category.Products);
+      }
+    });
 
     return res.status(200).json({
-      message: "gotten prosucts",
-      result: getCategoriesForLoggedInuser,
+      message: "Successfully retrieved all products.",
+      result: allProducts,
     });
   } catch (error) {
+    console.error("Error fetching products:", error); // Log the error for debugging
     return res.status(400).json({
-      message: "an error occured in getting products",
+      message: "An error occurred while retrieving products.",
     });
   }
 };
+
