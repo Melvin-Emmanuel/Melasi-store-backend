@@ -7,6 +7,6 @@ const router = express.Router()
 
 
 router.route("/Create-Product").post(verifyToken,CreateProduct)
-router.route("/Get-All-Products").get(verifyToken,GetAllProducts);
+router.route("/Get-All-Products").get(GetAllProducts);
 
 export default router

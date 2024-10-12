@@ -103,45 +103,58 @@ const editProduct = async (req: any, res: Response): Promise<Response> => {
     });
   }
 };
-import { Response } from "express";
-import CategoryModel from "path-to-your-category-model"; // Adjust the import path accordingly
 
 export const GetAllProducts = async (
   req: any,
   res: Response
 ): Promise<Response> => {
   try {
-    const UserID = req.User._id;
+    // const UserID = req.User._id;
 
     // Fetch all categories for the logged-in user and include their products
-    const categories = await CategoryModel.find({ User: UserID }).lean();
-
-    if (!categories.length) {
-      return res.status(200).json({
-        message: "No categories found for the user.",
-        result: [],
-      });
-    }
-
-    // Initialize an array to hold all products
-    const allProducts: any[] = [];
-
-    // Loop through each category and extract products
-    categories.forEach((category) => {
-      if (Array.isArray(category.Products)) {
-        allProducts.push(...category.Products);
+    const products = await ProductModel.find()
+    return res.status(201).json(
+      {
+        message: "products gotten",
+        result: products
       }
-    });
-
-    return res.status(200).json({
-      message: "Successfully retrieved all products.",
-      result: allProducts,
-    });
-  } catch (error) {
-    console.error("Error fetching products:", error); // Log the error for debugging
-    return res.status(400).json({
-      message: "An error occurred while retrieving products.",
-    });
+    )
+  } catch(error:any){
+    return res.status(404).json({
+      message: "error in retrieving products",
+      error:error.message
+      
+    })
   }
-};
+
+}
+
+
+
+  //   if (!categories.length) {
+  //     return res.status(200).json({
+  //       message: "No categories found for the user.",
+  //       result: [],
+  //     });
+  //   }
+
+  //   // Initialize an array to hold all products
+  //   const allProducts: any[] = [];
+
+  //   // Loop through each category and extract products
+  //   categories.forEach((category) => {
+     
+  //       allProducts.push(...category.Products);
+      
+  //   });
+
+  //   return res.status(200).json({
+  //     message: "Successfully retrieved all products.",
+  //     result: allProducts,
+  //   });
+  // } catch (error:any) {
+  //   console.error("Error fetching products:", error); // Log the error for debugging
+  //   return res.status(400).json({
+  //     message: `An error occurred while retrieving products. ${error.message}`
+  //   });
 
